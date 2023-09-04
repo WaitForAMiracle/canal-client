@@ -39,7 +39,7 @@ public class RowDataHandlerImpl implements RowDataHandler<CanalEntry.RowData> {
                             .map(CanalEntry.Column::getName).collect(Collectors.toSet());
                     R before = modelFactory.newInstance(entryHandler, rowData.getBeforeColumnsList(),updateColumnSet);
                     R after = modelFactory.newInstance(entryHandler, rowData.getAfterColumnsList());
-                    entryHandler.update(before, after);
+                    entryHandler.update(before, after,updateColumnSet);
                     break;
                 case DELETE:
                     R o = modelFactory.newInstance(entryHandler, rowData.getBeforeColumnsList());

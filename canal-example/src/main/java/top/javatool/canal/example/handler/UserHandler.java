@@ -8,6 +8,8 @@ import top.javatool.canal.client.annotation.CanalTable;
 import top.javatool.canal.client.handler.EntryHandler;
 import top.javatool.canal.example.model.User;
 
+import java.util.Set;
+
 
 @Component
 @CanalTable(value = "t_user")
@@ -23,9 +25,10 @@ public class UserHandler implements EntryHandler<User> {
     }
 
     @Override
-    public void update(User before, User after) {
+    public void update(User before, User after, Set<String> updateColumnSet) {
         logger.info("update before {} ", before);
         logger.info("update after {}", after);
+        logger.info("updateColumnSet {}", updateColumnSet);
     }
 
     @Override

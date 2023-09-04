@@ -33,7 +33,7 @@ public class MapRowDataHandlerImpl implements RowDataHandler<List<Map<String, St
                 case UPDATE:
                     R before = modelFactory.newInstance(entryHandler, list.get(1));
                     R after = modelFactory.newInstance(entryHandler, list.get(0));
-                    entryHandler.update(before, after);
+                    entryHandler.update(before, after,null);
                     break;
                 case DELETE:
                     R o = modelFactory.newInstance(entryHandler, list.get(0));

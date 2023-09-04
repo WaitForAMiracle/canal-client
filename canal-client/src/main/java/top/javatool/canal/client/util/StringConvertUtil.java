@@ -1,6 +1,7 @@
 package top.javatool.canal.client.util;
 
 import org.apache.commons.lang.time.DateUtils;
+import org.springframework.util.StringUtils;
 
 import java.math.BigDecimal;
 import java.text.ParseException;
@@ -21,24 +22,50 @@ public class StringConvertUtil {
     }
 
     static Object convertType(Class<?> type, String columnValue) {
-        if (columnValue == null) {
+        if(columnValue==null){
             return null;
-        } else if (type.equals(Integer.class)) {
+        }else if (type.equals(Integer.class)) {
+            if (StringUtils.isEmpty(columnValue)) {
+                return null;
+            }
             return Integer.parseInt(columnValue);
         } else if (type.equals(Long.class)) {
+            if (StringUtils.isEmpty(columnValue)) {
+                return null;
+            }
             return Long.parseLong(columnValue);
         } else if (type.equals(Boolean.class)) {
+            if (StringUtils.isEmpty(columnValue)) {
+                return null;
+            }
             return convertToBoolean(columnValue);
         } else if (type.equals(BigDecimal.class)) {
+            if (StringUtils.isEmpty(columnValue)) {
+                return null;
+            }
             return new BigDecimal(columnValue);
         } else if (type.equals(Double.class)) {
+            if (StringUtils.isEmpty(columnValue)) {
+                return null;
+            }
             return Double.parseDouble(columnValue);
         } else if (type.equals(Float.class)) {
+            if (StringUtils.isEmpty(columnValue)) {
+                return null;
+            }
             return Float.parseFloat(columnValue);
         } else if (type.equals(Date.class)) {
+            if (StringUtils.isEmpty(columnValue)) {
+                return null;
+            }
+            return parseDate(columnValue);
+        } else if (type.equals(java.sql.Date.class)) {
+            if (StringUtils.isEmpty(columnValue)) {
+                return null;
+            }
             return parseDate(columnValue);
         } else {
-            return type.equals(java.sql.Date.class) ? parseSqlDate(columnValue) : columnValue;
+            return columnValue;
         }
     }
 

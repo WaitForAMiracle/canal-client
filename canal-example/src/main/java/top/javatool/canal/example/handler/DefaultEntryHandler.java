@@ -15,6 +15,7 @@ import top.javatool.canal.client.handler.EntryHandler;
 import javax.annotation.Resource;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import static org.jooq.impl.DSL.field;
@@ -48,7 +49,7 @@ public class DefaultEntryHandler implements EntryHandler<Map<String, String>> {
     }
 
     @Override
-    public void update(Map<String, String> before, Map<String, String> after) {
+    public void update(Map<String, String> before, Map<String, String> after, Set<String> updateColumnSet) {
         logger.info("修改 before {}", before);
         logger.info("修改 after {}", after);
         String table = CanalContext.getModel().getTable();

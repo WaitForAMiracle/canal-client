@@ -44,7 +44,11 @@ public class EntryUtil {
 
     private static String getColumnName(Field field) {
         Column annotation = field.getAnnotation(Column.class);
-        return annotation != null ? annotation.name() : CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, field.getName());
+        if (annotation != null) {
+            return annotation.name().replaceAll("`", "");
+        } else {
+            return field.getName();
+        }
     }
 
     private static boolean notTransient(Field field) {
